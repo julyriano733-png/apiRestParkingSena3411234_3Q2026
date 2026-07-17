@@ -10,14 +10,14 @@ import com.sena.parqueadero.model.Vehiculo;
 
 import jakarta.persistence.LockModeType;
 
-public interface IVehiculoRepositorio extends JpaRepository<Vehiculo, Long>{
+public interface IVehiculoRepositorio extends JpaRepository<Vehiculo, Long> {
 
 	Optional<Vehiculo> findPlaca(String placa);
-	
+
 	boolean existsByPlaca(String placa);
+
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	@Query("SELECT v FROM Vehiculo v WHERE v.placa = : placa")
 	Optional<Vehiculo> findByPlacaForUpdate(String placa);
-	
-	
+
 }
